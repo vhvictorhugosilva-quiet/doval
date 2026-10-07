@@ -1,0 +1,11 @@
+:root{
+  --ease-out:cubic-bezier(.22,.68,0,1); /* @kind other */
+  --ease-bounce:cubic-bezier(.34,1.56,.64,1); /* @kind other */ /* the doval default: slight overshoot */
+  --ease-in-out:cubic-bezier(.45,0,.55,1); /* @kind other */
+  --dur-fast:120ms; /* @kind other */
+  --dur-base:200ms; /* @kind other */
+  --dur-slow:340ms; /* @kind other */
+  --dur-slower:600ms; /* @kind other */
+  --transition-press:transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  --transition-pop:transform var(--dur-base) var(--ease-bounce);
+}

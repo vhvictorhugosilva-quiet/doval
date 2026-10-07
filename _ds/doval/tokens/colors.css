@@ -1,0 +1,62 @@
+/* Brand hexes sampled directly from assets/logo-horizontal.png */
+:root{
+  /* ---- brand crayon four ---- */
+  --doval-red:#E93209;
+  --doval-yellow:#FAC800;
+  --doval-blue:#0D86E0;
+  --doval-green:#089030;
+
+  /* ---- tints (crayon laid down light) ---- */
+  --red-100:#FDE7E0;--red-200:#FAC5B6;--red-400:#F2703F;--red-600:#E93209;--red-800:#B32405;
+  --yellow-100:#FFF7DB;--yellow-200:#FFEBA3;--yellow-400:#FFD633;--yellow-600:#FAC800;--yellow-800:#C79A00;
+  --blue-100:#E2F1FD;--blue-200:#B4DCFA;--blue-400:#4CA8EA;--blue-600:#0D86E0;--blue-800:#0A63A6;
+  --green-100:#E1F4E6;--green-200:#B2E2C0;--green-400:#3FB25F;--green-600:#089030;--green-800:#066B24;
+
+  /* ---- neutrals: warm, paper-leaning ---- */
+  --paper:#FFFDF7;
+  --neutral-0:#FFFFFF;
+  --neutral-50:#FBF8F1;
+  --neutral-100:#F4EFE4;
+  --neutral-200:#E7E0D2;
+  --neutral-300:#CFC6B5;
+  --neutral-400:#A79D8B;
+  --neutral-500:#7C7364;
+  --neutral-700:#4A443B;
+  --neutral-900:#26231E;
+  --ink:#26231E;
+
+  /* ---- semantic aliases ---- */
+  --text-heading:var(--ink);
+  --text-body:var(--neutral-700);
+  --text-muted:var(--neutral-500);
+  --text-on-brand:#FFFFFF;
+  --text-on-yellow:var(--ink);
+  --text-link:var(--doval-blue);
+  --text-link-hover:var(--blue-800);
+
+  --surface-page:var(--paper);
+  --surface-card:var(--neutral-0);
+  --surface-sunken:var(--neutral-50);
+  --surface-accent:var(--yellow-100);
+  --surface-inverse:var(--ink);
+
+  --border-subtle:var(--neutral-200);
+  --border-strong:var(--ink);
+  --border-focus:var(--doval-blue);
+
+  --action-primary:var(--doval-red);
+  --action-primary-hover:var(--red-800);
+  --action-secondary:var(--doval-blue);
+  --action-secondary-hover:var(--blue-800);
+  --action-accent:var(--doval-yellow);
+  --action-accent-hover:var(--yellow-800);
+
+  --feedback-success:var(--doval-green);
+  --feedback-success-bg:var(--green-100);
+  --feedback-warning:var(--yellow-800);
+  --feedback-warning-bg:var(--yellow-100);
+  --feedback-danger:var(--doval-red);
+  --feedback-danger-bg:var(--red-100);
+  --feedback-info:var(--doval-blue);
+  --feedback-info-bg:var(--blue-100);
+}

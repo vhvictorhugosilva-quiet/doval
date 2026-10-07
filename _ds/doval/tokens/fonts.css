@@ -1,0 +1,16 @@
+/* doval webfonts — user-provided binaries in assets/fonts */
+@font-face{font-family:"Baloo 2";src:url("../assets/fonts/Baloo2-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("../assets/fonts/Baloo2-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("../assets/fonts/Baloo2-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("../assets/fonts/Baloo2-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Baloo 2";src:url("../assets/fonts/Baloo2-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Quicksand";src:url("../assets/fonts/Quicksand-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Quicksand";src:url("../assets/fonts/Quicksand-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Quicksand";src:url("../assets/fonts/Quicksand-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Quicksand";src:url("../assets/fonts/Quicksand-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Quicksand";src:url("../assets/fonts/Quicksand-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Koara";src:url("../assets/fonts/Koara-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Koara";src:url("../assets/fonts/Koara-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Koara Wild";src:url("../assets/fonts/KoaraWild-Light.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Koara Wild";src:url("../assets/fonts/KoaraWild-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Koara Wild";src:url("../assets/fonts/KoaraWild-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}

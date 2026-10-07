@@ -1,0 +1,7 @@
+:root{
+  /* doval is round. Nothing in the brand is a hard 90° corner except full-bleed blocks. */
+  --radius-xs:6px;--radius-sm:10px;--radius-md:16px;--radius-lg:24px;--radius-xl:32px;
+  --radius-pill:999px;
+  --radius-blob:60% 40% 55% 45% / 45% 55% 45% 55%;
+  --border-width:2px;--border-width-thick:3px;
+}
