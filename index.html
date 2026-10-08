@@ -74,6 +74,7 @@ a{color:var(--text-link);text-decoration:none}
 a:hover{color:var(--text-link-hover);text-decoration:underline}
 main a[href^="#"],main a[href^="http"],header a{text-decoration:none}
 main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
+@media (max-width:400px){.dv-afeto{display:none!important}}
 @keyframes dv-drift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-7px) rotate(4deg)}}
 </style>
 </helmet>
@@ -128,8 +129,14 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
 <sc-if value="{{ isMenu }}" hint-placeholder-val="{{ false }}">
 <header style="position:sticky;top:0;z-index:30;background:var(--neutral-0);border-bottom:2px solid var(--ink)">
   <div style="max-width:1000px;margin:0 auto;padding:12px 16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px">
-    <button type="button" onClick="{{ goInicio }}" aria-label="Voltar ao início" style="display:flex;align-items:center;padding:0;border:0;background:transparent;cursor:pointer"><x-import component-from-global-scope="DovalDesignSystem_84fe4e.Logo" height="30px" src="{{ logoColor }}" tone="color" hint-size="96px,30px"></x-import></button>
-    <span style="display:inline-flex;align-items:center;gap:7px;font-family:var(--font-script);font-size:22px;line-height:1;white-space:nowrap">
+    <div style="display:flex;align-items:center;gap:8px;min-width:0">
+      <button type="button" onClick="{{ goInicio }}" style="display:inline-flex;align-items:center;gap:2px;min-height:44px;margin-left:-8px;padding:0 10px 0 4px;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--ink);font-family:var(--font-body);font-weight:700;font-size:16px;line-height:1;white-space:nowrap;cursor:pointer;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--neutral-100)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        <span>voltar</span>
+      </button>
+      <button type="button" onClick="{{ goInicio }}" aria-label="Voltar ao início" style="display:flex;align-items:center;padding:0;border:0;background:transparent;cursor:pointer"><x-import component-from-global-scope="DovalDesignSystem_84fe4e.Logo" height="30px" src="{{ logoColor }}" tone="color" hint-size="96px,30px"></x-import></button>
+    </div>
+    <span class="dv-afeto" style="display:inline-flex;align-items:center;gap:7px;font-family:var(--font-script);font-size:22px;line-height:1;white-space:nowrap">
       <x-import component-from-global-scope="DovalDesignSystem_84fe4e.Doodle" name="heart-red" src="{{ srcHeartRed }}" size="26px" rotate="-8" base="assets/illustrations" hint-size="26px,26px"></x-import>
       <span style="color:var(--doval-yellow)">feito</span>
       <span style="color:var(--doval-blue)">com</span>
