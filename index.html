@@ -21,7 +21,7 @@
 <meta name="ext-resource-dependency" content="assets/fotos/lasanha-berinjela.jpg" data-resource-id="foto-lasanha" />
 <meta name="ext-resource-dependency" content="assets/fotos/escondidinho-abobora.jpg" data-resource-id="foto-escondidinho" />
 <meta name="ext-resource-dependency" content="assets/fotos/frango-low-carb.jpg" data-resource-id="foto-lowcarb" />
-<meta name="ext-resource-dependency" content="assets/fotos/bolo-nozes.jpg" data-resource-id="foto-nozes" />
+<meta name="ext-resource-dependency" content="assets/fotos/bolo-nozes.jpg?v=2" data-resource-id="foto-nozes" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-ninho-uva.jpg" data-resource-id="foto-ninho" />
 <meta name="ext-resource-dependency" content="assets/fotos/banana-bread.jpg" data-resource-id="foto-banana" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-cenoura.jpg" data-resource-id="foto-cenoura" />
@@ -884,7 +884,7 @@ class Component extends DCLogic {
         nome: 'Marmita ' + it.nome, detalhe: kitDetalhe, preco: brl(kitUnit) + ' / marmita', valor: kitUnit, grupo: 'kit', limite: Number(kitQty || 0)
       }))),
       favoritos: [
-        { nome: 'Bolo de nozes', desc: 'Massa úmida de nozes, recheio cremoso de brigadeiro de nozes e cobertura de marshmallow.', preco: 'R$ 250,00 / unidade', valorUn: 250, info: 'Peso médio 2,5 kg · Rende 25 fatias', foto: ['foto-nozes', 'bolo-nozes.jpg'], alt: 'Fatia do bolo de nozes com camadas de brigadeiro de nozes', tag: 'Para sua festa' },
+        { nome: 'Bolo de nozes', desc: 'Massa úmida de nozes, recheio cremoso de brigadeiro de nozes e cobertura de marshmallow.', preco: 'R$ 250,00 / unidade', valorUn: 250, info: 'Peso médio 2,5 kg · Rende 25 fatias', foto: ['foto-nozes', 'bolo-nozes.jpg?v=2'], alt: 'Bolo de nozes inteiro com cobertura de marshmallow e nozes por cima', tag: 'Para sua festa' },
         { nome: 'Leite Ninho com uvas verdes', desc: 'Pão de ló leve, brigadeiro de Leite Ninho e uvas verdes frescas para um contraste delicado.', preco: 'R$ 200,00 / unidade', valorUn: 200, info: 'Aproximadamente 2 kg', tag: 'Queridinho', foto: ['foto-ninho', 'bolo-ninho-uva.jpg'], alt: 'Bolo de Leite Ninho com uvas verdes' },
         { nome: 'Bolo de prestígio', desc: 'Massa de chocolate 100% cacau, recheio cremoso de coco e coco ralado fresco por cima.', preco: 'R$ 150,00 / unidade', valorUn: 150, info: 'Aproximadamente 1,5 kg', foto: ['foto-prestigio', 'bolo-prestigio.jpg'], alt: 'Bolo de chocolate com cobertura de coco', tag: 'Chocolate e coco' },
         { nome: 'Cheesecake de morango', desc: 'Base crocante, creme suave e cobertura generosa de geleia artesanal de morango.', pg: [180, 280], foto: ['foto-cheese-morango', 'cheesecake-morango.jpg'], alt: 'Cheesecake com geleia de morango', tag: 'Tradicional' },
