@@ -95,6 +95,11 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
 [data-zoom="sim"] .foto-zoom{width:calc(var(--foto-w) * 2);cursor:grab;touch-action:pan-x pan-y pinch-zoom}
 [data-zoom="sim"] .foto-zoom:active{cursor:grabbing}
 .foto-previa{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(8px);transform:scale(1.06);pointer-events:none}
+.foto-tag{position:absolute;top:14px;left:14px;z-index:2;max-width:calc(100% - 88px);padding:8px 16px;border-radius:var(--radius-pill);border:2px solid var(--ink);box-shadow:var(--shadow-sticker-sm);color:var(--ink);font:var(--type-label);font-size:15px;letter-spacing:var(--tracking-caps);text-transform:uppercase;pointer-events:none}
+.foto-tag[data-cor="amarelo"]{background:var(--doval-yellow)}
+.foto-tag[data-cor="verde"]{background:var(--doval-green);color:#fff}
+.foto-tag[data-cor="azul"]{background:var(--doval-blue);color:#fff}
+.foto-tag[data-cor="vermelho"]{background:var(--doval-red);color:#fff}
 .foto-dica{position:absolute;right:12px;bottom:12px}
 .foto-fechar{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:50%;background:var(--neutral-0);color:var(--ink);font-family:var(--font-display);font-weight:800;font-size:18px;line-height:1;cursor:pointer;transition:transform var(--dur-fast) var(--ease-out)}
 .foto-fechar:active{transform:scale(.9)}
@@ -584,6 +589,9 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
         <div class="foto-janela" ref="{{ fotoJanelaRef }}">
           <button type="button" class="foto-zoom" onClick="{{ alternarZoom }}" aria-label="{{ fotoZoomLabel }}"><img src="{{ fotoSrc }}" alt="{{ fotoAlt }}" draggable="false"></button>
         </div>
+        <sc-if value="{{ fotoTemTag }}" hint-placeholder-val="{{ false }}">
+          <span class="foto-tag" data-cor="{{ fotoTagCor }}">{{ fotoTag }}</span>
+        </sc-if>
         <sc-if value="{{ fotoCarregando }}" hint-placeholder-val="{{ false }}">
           <img class="foto-previa" src="{{ fotoCapa }}" alt="">
         </sc-if>
@@ -722,7 +730,7 @@ class Component extends DCLogic {
   }
 
   /* ── foto ampliada das marmitas e doces ── */
-  abrirFoto(e, nome, desc, ampliada) {
+  abrirFoto(e, nome, desc, ampliada, tag) {
     const botao = e.currentTarget;
     const img = botao.parentElement.querySelector('img');
     if (!img) return;
@@ -735,7 +743,7 @@ class Component extends DCLogic {
     try { window.history.pushState({ dovalFoto: true }, ''); this._fotoHist = true; } catch (err) {}
     const prop = el => el.naturalWidth && el.naturalHeight ? el.naturalWidth / el.naturalHeight : 1.5;
     const capa = img.currentSrc || img.src;
-    const foto = { src: capa, capa: capa, alt: img.alt, nome: nome, desc: desc || '', ratio: prop(img), pronta: true };
+    const foto = { src: capa, capa: capa, alt: img.alt, nome: nome, desc: desc || '', tag: tag || '', ratio: prop(img), pronta: true };
     if (!ampliada) { this.setState({ foto: foto, fotoZoom: false }); return; }
     /* prato com segunda foto: mostra a do card borrada até a completa chegar; se falhar, fica a do card */
     const grande = new Image();
@@ -762,6 +770,14 @@ class Component extends DCLogic {
     this.setState({ foto: null, fotoZoom: false });
     if (this._fotoBotao) this._fotoBotao.focus({ preventScroll: true });
     this._fotoBotao = null;
+  }
+
+  /* cor da tag na foto ampliada: verde pra leve/vegetariana; as outras variam, sempre a mesma por tag */
+  corDaTag(tag) {
+    if (/carb|veg|leve|fit/i.test(tag)) return 'verde';
+    let n = 0;
+    for (let i = 0; i < tag.length; i++) n += tag.charCodeAt(i);
+    return ['amarelo', 'azul', 'vermelho'][n % 3];
   }
 
   travarFundo(travar) {
@@ -896,7 +912,7 @@ class Component extends DCLogic {
     const dood = n => R('d-' + n, 'assets/illustrations/' + n + '.png');
 
     const view = this.state.view || this.props.startView || 'inicio';
-    const foto = this.state.foto || { src: '', capa: '', alt: '', nome: '', desc: '', ratio: 1.5, pronta: true };
+    const foto = this.state.foto || { src: '', capa: '', alt: '', nome: '', desc: '', tag: '', ratio: 1.5, pronta: true };
     const topo = () => { if (typeof window !== 'undefined') window.scrollTo(0, 0); };
     const whatsapp = this.props.whatsapp ?? '(11) 98293-9101';
 
@@ -945,7 +961,7 @@ class Component extends DCLogic {
         fotoSrc: p.foto || '',
         fotoAlt: p.fotoAlt || p.nome,
         fotoLabel: 'Ampliar foto: ' + p.nome,
-        abrirFoto: e => this.abrirFoto(e, p.nome, p.descricao, p.fotoAmpliada),
+        abrirFoto: e => this.abrirFoto(e, p.nome, p.descricao, p.fotoAmpliada, p.etiqueta),
         doodleSrc: dood(emBreve ? 'leaf-red' : 'star-green'),
         qtyLabel: (atual ? atual.qty : 0) + '×',
         inc: () => this.bump(id, 1, meta),
@@ -1024,6 +1040,9 @@ class Component extends DCLogic {
       fotoAberta: !!this.state.foto,
       fotoSrc: foto.src,
       fotoCapa: foto.capa,
+      fotoTag: foto.tag,
+      fotoTemTag: !!foto.tag,
+      fotoTagCor: this.corDaTag(foto.tag),
       fotoCarregando: !!this.state.foto && !foto.pronta,
       fotoAlt: foto.alt,
       fotoNome: foto.nome,
@@ -1086,7 +1105,7 @@ class Component extends DCLogic {
         { nome: 'Carne moída', desc: 'Arroz, feijão-preto, carne moída refogadinha e repolho assado com mostarda e mel.', tag: 'Clássica', ehCarne: true, semFoto: false, ampliada: 'assets/fotos/carne-moida-repolho-2-ampliada.jpg', doodle: 'star-blue' },
         { nome: 'Lasanha de berinjela', desc: 'Suculenta, com molho de tomates assados.', tag: 'vegetariana', ehVeg: true, semFoto: false, doodle: 'flower-red' },
         { nome: 'Frango ao curry grelhado', desc: 'Frango grelhado, legumes, purê de abóbora cabotiá e quinoa.', tag: 'leve', ehLowCarb: true, semFoto: false, doodle: 'leaf-red' }
-      ].map(it => Object.assign({}, it, { doodleSrc: dood(it.doodle), temFoto: !it.semFoto, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, it.ampliada) }, this.stepper('kit-' + it.nome, {
+      ].map(it => Object.assign({}, it, { doodleSrc: dood(it.doodle), temFoto: !it.semFoto, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, it.ampliada, it.tag) }, this.stepper('kit-' + it.nome, {
         nome: 'Marmita ' + it.nome, detalhe: kitDetalhe, preco: brl(kitUnit) + ' / marmita', valor: kitUnit, grupo: 'kit', limite: Number(kitQty || 0)
       }))),
       favoritos: [
@@ -1099,7 +1118,7 @@ class Component extends DCLogic {
       ].map((it, i) => {
         const key = 'fav-' + i;
         const doodles = ['crown-red', 'flower-yellow', 'sparkle-green', 'star-blue', 'moon-green'];
-        it = Object.assign({}, it, { doodle: doodles[i % doodles.length], doodleSrc: dood(doodles[i % doodles.length]), temInfo: !!it.info, temFoto: !!it.foto, fotoSrc: it.foto ? R(it.foto[0], 'assets/fotos/' + it.foto[1]) : '', fotoAlt: it.alt || it.nome, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, it.ampliada) });
+        it = Object.assign({}, it, { doodle: doodles[i % doodles.length], doodleSrc: dood(doodles[i % doodles.length]), temInfo: !!it.info, temFoto: !!it.foto, fotoSrc: it.foto ? R(it.foto[0], 'assets/fotos/' + it.foto[1]) : '', fotoAlt: it.alt || it.nome, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, it.ampliada, it.tag) });
         if (!it.pg) return Object.assign({}, it, { temPG: false, precoLabel: it.preco }, this.stepper(key, { nome: it.nome, detalhe: it.info || '', preco: it.preco, valor: it.valorUn }));
         const escolha = this.state.favSize[key] || 'P';
         const valor = escolha === 'P' ? it.pg[0] : it.pg[1];
@@ -1133,7 +1152,7 @@ class Component extends DCLogic {
           const setCob = v => this.setState(s => ({ simCob: Object.assign({}, s.simCob, { [key]: v }) }));
           const comFotoCob = opt === 1 && it.fotoCob;
           const f = comFotoCob ? it.fotoCob : it.foto;
-          Object.assign(base, { temFoto: !!f, fotoSrc: f ? R(f[0], 'assets/fotos/' + f[1]) : '', fotoAlt: (it.alt || it.nome) + (comFotoCob ? ' com cobertura de brigadeiro' : ''), fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, comFotoCob ? null : it.ampliada) });
+          Object.assign(base, { temFoto: !!f, fotoSrc: f ? R(f[0], 'assets/fotos/' + f[1]) : '', fotoAlt: (it.alt || it.nome) + (comFotoCob ? ' com cobertura de brigadeiro' : ''), fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, comFotoCob ? null : it.ampliada, it.tag) });
           const detalhe = [it.info, detalhes[opt]].filter(Boolean).join(' · ');
           return Object.assign(base, {
             temPG: false,
