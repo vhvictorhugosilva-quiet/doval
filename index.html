@@ -23,7 +23,7 @@
 <meta name="ext-resource-dependency" content="assets/fotos/frango-low-carb.jpg" data-resource-id="foto-lowcarb" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-nozes-2.jpg" data-resource-id="foto-nozes" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-ninho-uva-2.jpg" data-resource-id="foto-ninho" />
-<meta name="ext-resource-dependency" content="assets/fotos/banana-bread-2.jpg" data-resource-id="foto-banana" />
+<meta name="ext-resource-dependency" content="assets/fotos/banana-bread-3.jpg" data-resource-id="foto-banana" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-cenoura.jpg" data-resource-id="foto-cenoura" />
 <meta name="ext-resource-dependency" content="assets/fotos/cenoura-brigadeiro.jpg" data-resource-id="foto-cenoura-brig" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-chocolate.jpg" data-resource-id="foto-chocolate" />
@@ -1139,7 +1139,7 @@ class Component extends DCLogic {
         { nome: 'Bolo de cenoura', desc: 'Clássico brasileiro de massa fofinha, com cobertura de brigadeiro.', foto: ['foto-cenoura-brig', 'cenoura-brigadeiro.jpg'], cobLabels: ['Sem cobertura', 'Cobertura de brigadeiro', 'Calda de chocolate'], cobPrecos: [0, 25, 10], cobDetalhe: ['sem cobertura', 'com cobertura de brigadeiro (+ R$ 25,00)', 'com calda de chocolate (+ R$ 10,00)'], alt: 'Bolo de cenoura', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'star-blue', aValidar: false, tag: 'Clássico' },
         { nome: 'Bolo de laranja', desc: 'Leve, cítrico, perfumado e muuuito fofinho.', cobLabels: ['Sem calda', 'Calda de laranja'], cobPrecos: [0, 10], cobDetalhe: ['sem calda', 'com calda de laranja (+ R$ 10,00)'], foto: ['foto-laranja', 'bolo-laranja.jpg'], alt: 'Bolo de laranja fofinho', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'flower-yellow', aValidar: false, tag: 'Cítrico' },
         { nome: 'Bolo de chocolate', desc: 'Sabor intenso de cacau.', cobLabels: ['Sem cobertura', 'Cobertura de brigadeiro', 'Calda de chocolate'], cobPrecos: [0, 25, 10], cobDetalhe: ['sem cobertura', 'com cobertura de brigadeiro (+ R$ 25,00)', 'com calda de chocolate (+ R$ 10,00)'], foto: ['foto-chocolate', 'bolo-chocolate.jpg'], alt: 'Bolo de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'sparkle-green', aValidar: false, tag: 'Pro chocólatra' },
-        { nome: 'Banana bread', desc: 'Bolo amanteigado macio e aromático, com gotas de chocolate em cada fatia.', cobLabels: [''], cobDetalhe: [''], foto: ['foto-banana', 'banana-bread-2.jpg'], ampliada: 'assets/fotos/banana-bread-2-ampliada.jpg', alt: 'Banana bread com gotas de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'crown-red', aValidar: false, tag: 'Favorito doval' }
+        { nome: 'Banana bread', desc: 'Bolo amanteigado macio e aromático, com gotas de chocolate em cada fatia.', cobLabels: [''], cobDetalhe: [''], foto: ['foto-banana', 'banana-bread-3.jpg'], ampliada: 'assets/fotos/banana-bread-2-ampliada.jpg', alt: 'Banana bread com gotas de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'crown-red', aValidar: false, tag: 'Favorito doval' }
       ].map((it, i) => {
         const key = 'sim-' + i;
         const base = Object.assign({}, it, { doodleSrc: dood(it.doodle), tag: it.tag || 'Por unidade', temInfo: !!it.info });
