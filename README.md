@@ -1,6 +1,6 @@
 # doval · cardápio digital
 
-Site estático do cardápio da doval (marmitas + doces). Publicado na Vercel: cada commit na branch `main` vai pro ar sozinho em ~30 segundos.
+Site estático do cardápio da doval (marmitas + doces). Publicado na Vercel: o que entra na branch `main` vai pro ar em ~30 segundos. As trocas entram por pull request (PR), aprovado pelo Victor.
 
 Origem: exportado do Claude Design (projeto "Redesign cardápio digital Doval", v1.0).
 
@@ -11,6 +11,7 @@ index.html        ← a página inteira (início, kits, cardápio da semana, doc
 cardapio.json     ← pratos do cardápio da semana (é o que muda toda semana)
 CLAUDE.md         ← regras pro Claude que for editar este site
 MARCA.md          ← tom de voz e identidade da doval
+.claude/skills/   ← abrir-pr: passo a passo pra enviar uma troca pra aprovação
 scripts/          ← checar-cardapio.py: confere o cardapio.json antes de publicar
 support.js        ← motor do Claude Design (não editar)
 vendor/           ← React (cópia local, não editar)
@@ -25,11 +26,11 @@ vercel.json       ← configuração da Vercel
 
 Os pratos da semana ficam todos no arquivo `cardapio.json`. Não precisa (e não deve) mexer no `index.html`.
 
-**Com o Claude (recomendado):** abra esta pasta no Claude e peça, por exemplo: *"troca o cardápio da semana: sai a fraldinha, entra frango ao curry a R$ 32, selo Novidade, foto em anexo"*. O Claude segue as regras do `CLAUDE.md`: atualiza a pasta, edita o `cardapio.json`, confere com `scripts/checar-cardapio.py`, te mostra o resumo e só publica depois do seu "pode".
+**Com o Claude (recomendado):** abra esta pasta no Claude e peça, por exemplo: *"troca o cardápio da semana: sai a fraldinha, entra frango ao curry a R$ 32, selo Novidade, foto em anexo"*. O Claude segue as regras do `CLAUDE.md`: atualiza a pasta, edita o `cardapio.json`, confere com `scripts/checar-cardapio.py`, te mostra o resumo e, depois do seu "pode enviar", abre um PR pro Victor aprovar (skill `abrir-pr`).
 
-**Sem o Claude (pelo site do GitHub):** abra `cardapio.json`, clique no lápis, troque os textos entre aspas e o número do `preco` (ex.: `32.5`, sem "R$"), e clique em **Commit changes**. Foto nova: **Add file → Upload files** dentro de `assets/fotos/` (nome sem acento nem espaço) e coloque o caminho no campo `foto`.
+**Sem o Claude (pelo site do GitHub):** abra `cardapio.json`, clique no lápis, troque os textos entre aspas e o número do `preco` (ex.: `32.5`, sem "R$"), e clique em **Commit changes**. Escolha **Create a new branch for this commit and start a pull request** → **Propose changes** → **Create pull request**. Foto nova: na página dessa mesma branch, **Add file → Upload files** dentro de `assets/fotos/` (nome sem acento nem espaço), e coloque o caminho no campo `foto`.
 
-Em ~30s o site atualiza. Se o arquivo tiver algum erro, a seção mostra um aviso com o link do WhatsApp e o resto do site continua no ar.
+Mande o link do PR pro Victor. O site atualiza ~30s depois que ele aprovar, usando **Create a merge commit** (squash e rebase podem fazer a Vercel bloquear a publicação). Se o arquivo tiver algum erro, a seção mostra um aviso com o link do WhatsApp e o resto do site continua no ar.
 
 ## Rodar no computador
 
