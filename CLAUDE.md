@@ -1,6 +1,8 @@
 # doval · cardápio digital — instruções pro Claude
 
-Você está ajudando a **doval**, uma marmiteria (marmitas + doces). Este repositório é o site do cardápio, publicado na Vercel: **todo push na branch `main` vai pro ar sozinho em ~30 segundos**. Não existe ambiente de teste — o que entra na `main` é o que o cliente vê.
+Você está ajudando a **doval**, uma marmiteria (marmitas + doces). Este repositório é o site do cardápio, publicado na Vercel: **o que entra na branch `main` vai pro ar em ~30 segundos**. Não existe ambiente de teste — o que entra na `main` é o que o cliente vê.
+
+**Nunca faça push direto na `main`.** Toda troca vai por um pull request (PR) que o **Victor** aprova: use a skill `abrir-pr` (`.claude/skills/abrir-pr/SKILL.md`). A Vercel bloqueia publicações feitas direto pelo Lucas.
 
 Quem normalmente pede alterações aqui é o **Lucas** (sócio, não é programador). Fale com ele em português, de forma simples, sem jargão técnico. Antes de qualquer texto novo, leia `MARCA.md`.
 
@@ -67,23 +69,17 @@ O site lê o nome e o preço do `cardapio.json` também pro carrinho e pra mensa
 
 ## Passo a passo de uma troca
 
-1. **Atualize a pasta antes de editar**: `git pull` (ou peça pro Lucas clicar em "Fetch origin" / "Pull" no GitHub Desktop).
+1. **Atualize a pasta antes de editar**: `git switch main` e `git pull --ff-only` (ou peça pro Lucas clicar em "Fetch origin" / "Pull" no GitHub Desktop). Se for ajustar um envio que o Victor ainda não aprovou, fique na mesma branch e siga "Ajustar um envio" da skill `abrir-pr`.
 2. Confirme com o Lucas o que entra e o que sai, e **qualquer informação que faltar** (preço, foto, etiqueta). Se ele não souber o preço, use `null` — não chute.
 3. Edite o `cardapio.json` e adicione as fotos.
 4. Rode a checagem: `python3 scripts/checar-cardapio.py`. Ela precisa terminar com `OK`. Corrija qualquer `ERRO`; mostre os `AVISO`s pro Lucas.
 5. Se possível, veja o site rodando: `python3 -m http.server 8000` e abra http://localhost:8000 → "Cardápio da semana". (Abrir o `index.html` com duplo clique não funciona.)
-6. **Mostre um resumo pro Lucas e peça um "pode publicar"** antes de publicar. Ex.: "Vou colocar Frango ao curry (R$ 32,00, selo Novidade, foto nova) e tirar a Fraldinha. Publico?"
-7. Publique:
-   ```
-   git add cardapio.json assets/fotos/
-   git commit -m "Cardápio da semana: <pratos>"
-   git push
-   ```
-   Se você não conseguir fazer push (sem acesso ao GitHub), peça pro Lucas abrir o GitHub Desktop, clicar em **Commit to main** e depois **Push origin**.
-8. Em ~30 s o site atualiza. Peça pro Lucas conferir no celular.
+6. **Mostre um resumo pro Lucas e peça um "pode enviar"** antes de enviar. Ex.: "Vou enviar pro Victor: entra Frango ao curry (R$ 32,00, selo Novidade, foto nova) e sai a Fraldinha. Pode enviar?"
+7. Envie pra aprovação com a skill `abrir-pr`. Ela cria uma branch, abre o PR e te dá o link.
+8. Avise o Lucas que **ainda não está no ar**: ele manda o link pro Victor, e o site atualiza ~30 s depois que o Victor aprovar. Aí peça pra conferir no celular.
 
 ## Se der errado
 
-- Se o `cardapio.json` estiver quebrado, o site mostra "Não deu pra carregar o cardápio da semana agora" com link pro WhatsApp — o resto do site continua funcionando. Corrija e publique de novo.
-- Pra desfazer a última publicação: `git revert HEAD` e `git push`.
+- Se o `cardapio.json` estiver quebrado, o site mostra "Não deu pra carregar o cardápio da semana agora" com link pro WhatsApp — o resto do site continua funcionando. Corrija e envie de novo pela skill `abrir-pr`.
+- Pra desfazer a última publicação: peça pro Victor usar o botão **Revert** no PR aprovado.
 - Se `git pull` ou `git push` der conflito ou erro que você não entende, **pare** e peça pro Lucas falar com o Victor. Nunca use `git push --force` nem `git reset --hard`.
