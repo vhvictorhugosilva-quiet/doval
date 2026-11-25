@@ -51,14 +51,14 @@ No site (`doval-site/index.html`) a foto ocupa o topo do card em **proporção 4
 
 - **Selo (etiqueta)**: pílula branca no **canto superior esquerdo** ("Mais pedida", "Low carb"...). No arquivo de 1200×900, ela ocupa mais ou menos a faixa x 40–640, y 40–160. Nada importante da comida pode ficar ali. No comparativo do formato `card`, essa área aparece marcada com um contorno vermelho (o contorno só existe no comparativo, não na foto final).
 - **Lupa**: círculo branco no **canto inferior direito** (36 px), que abre a foto ampliada. No arquivo de 1200×900 fica mais ou menos em x 1020–1170, y 720–870, também marcado no comparativo. Pode cobrir a borda do pote ou um cantinho da comida, mas não a parte principal.
-- **Enquadramento**: a foto do card é **fechada**: o pote ocupa quase toda a largura. O pote/bolo fica inteiro no quadro, levemente **abaixo do centro**; o cenário completo aparece na ampliada. A borda do prato pode ser cortada; o pote e a comida, não.
+- **Enquadramento**: a foto do card é **fechada**: a comida é a protagonista e ocupa quase todo o quadro, levemente **abaixo do centro**; o cenário completo aparece na ampliada. Marmita: pote inteiro no quadro. Bolo comprido na diagonal (banana bread): pode cortar as pontinhas, porque inteiro ele fica pequeno no card. A borda do prato pode ser cortada.
 - As fotos em pé (3:4) perdem bastante altura no corte 4:3: use `--foco` para escolher a faixa certa da foto.
 
 ### Como escolher o `--foco`
 
 `--foco x,y` diz onde fica o centro do recorte, em frações da foto original (0,0 = canto superior esquerdo; 1,1 = canto inferior direito).
 - Olhe a foto e estime onde está o centro do pote/bolo. Como ponto de partida, use esse ponto com `y` reduzido em ~0.05 a 0.08: o recorte sobe e a comida desce no quadro, saindo de baixo do selo.
-- Valores que funcionaram nas fotos de referência: carne moída no prato azul `--foco 0.47,0.55 --zoom 1.08`; escondidinho no prato azul `--foco 0.47,0.49 --zoom 1.1`; frango no prato azul `--foco 0.5,0.51`; escondidinho na tábua `--foco 0.5,0.55 --zoom 1.4`; banana bread `--foco 0.55,0.515 --zoom 1.05`; bolo Ninho com uvas `--foco 0.5,0.585 --calor 2`; bolo de nozes `--foco 0.5,0.405`; fraldinha `--foco 0.5,0.585` (pote muito em pé: a pontinha de cima e de baixo fica cortada no card).
+- Valores que funcionaram nas fotos de referência: carne moída no prato azul `--foco 0.47,0.55 --zoom 1.08`; escondidinho no prato azul `--foco 0.47,0.49 --zoom 1.1`; frango no prato azul `--foco 0.5,0.51`; escondidinho na tábua `--foco 0.5,0.55 --zoom 1.4`; banana bread `--foco 0.61,0.5 --zoom 1.4`; bolo Ninho com uvas `--foco 0.5,0.585 --calor 2`; bolo de nozes `--foco 0.5,0.405`; fraldinha `--foco 0.5,0.585` (pote muito em pé: a pontinha de cima e de baixo fica cortada no card).
 - `--zoom 1.1` aproxima 10% (use quando sobra muita mesa). Zoom abaixo de 1 não existe: não dá para "afastar" além da foto.
 - Confira cada foto no comparativo e ajuste `--foco` foto a foto. É normal cada uma ter um valor diferente.
 
@@ -95,7 +95,7 @@ No site (`doval-site/index.html`) a foto ocupa o topo do card em **proporção 4
 - O prato/pote branco está branco (levemente quente), não amarelo nem azul.
 - Abóbora, cenoura e arroz amarelo não ficaram laranja de "plástico"; se ficaram, use `--intensidade 0.7` ou `--calor -1`.
 - Nada estourou (queijo ralado e pote com detalhe) nem ficou escuro demais (feijão preto e bolo de chocolate com textura).
-- No `card`: o pote/bolo inteiro dentro do quadro e nenhuma comida dentro do contorno vermelho do selo.
+- No `card`: a comida ocupa quase todo o quadro (se sobra muita mesa, pano ou prato, aumente o `--zoom`), o pote fica inteiro e nada importante fica dentro do contorno vermelho do selo.
 - Verdes e azuis do cenário (prato verde, toalha azul) continuam com a cor real.
 - Na `ampliada`: foto inteira, sem corte, com o mesmo tratamento do card.
 - Arquivo do `card` com 1200×900 e menos de 400 KB; `ampliada` com menos de 560 KB (confira os KB que o script mostra).
@@ -145,7 +145,7 @@ def tratar(im, k=1.0, calor=0.0, brilho=0.0):
     # branco de verdade: amarelado pela luz de casa, ou quase neutro (sombra, luz do dia).
     # prato verde e toalha/parede azul não contam
     quente = (sat < 0.25) & (px[:, 0] >= px[:, 1] * 0.98) & (px[:, 1] >= px[:, 2] * 0.98)
-    neutro = (sat < 0.12) & (px[:, 1] <= np.maximum(px[:, 0], px[:, 2]) * 1.01)
+    neutro = (sat < 0.12) & (L > 0.75) & (px[:, 1] <= np.maximum(px[:, 0], px[:, 2]) * 1.01)
     branco = quente | neutro
     neutros = px[claros & branco]
     if len(neutros) > max(500, 0.02 * len(px)):  # sem branco suficiente na foto, não mexe na cor
