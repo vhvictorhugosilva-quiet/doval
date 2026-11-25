@@ -7,7 +7,8 @@
       "descricao": "Arroz, grão-de-bico, fraldinha e pimentão assado.",
       "preco": 35,
       "etiqueta": "Mais pedida",
-      "foto": "assets/fotos/fraldinha-suculenta-2.jpg",
+      "foto": "assets/fotos/fraldinha-suculenta-3.jpg",
+      "fotoAmpliada": "assets/fotos/fraldinha-suculenta-3-ampliada.jpg",
       "fotoAlt": "Marmita de fraldinha desfiada com arroz, grão-de-bico e pimentão assado"
     },
     {
@@ -17,7 +18,8 @@
       "descricao": "Purê de abóbora assada, carne moída refogada e muito queijo parmesão por cima.",
       "preco": 25,
       "etiqueta": "Low carb",
-      "foto": "assets/fotos/escondidinho-abobora-2.jpg",
+      "foto": "assets/fotos/escondidinho-abobora-3.jpg",
+      "fotoAmpliada": "assets/fotos/escondidinho-abobora-3-ampliada.jpg",
       "fotoAlt": "Escondidinho de abóbora com carne moída e parmesão"
     },
     {
