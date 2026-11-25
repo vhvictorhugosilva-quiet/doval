@@ -1,0 +1,34 @@
+{
+  "semana": [
+    {
+      "id": "fraldinha-suculenta",
+      "status": "disponivel",
+      "nome": "Fraldinha suculenta",
+      "descricao": "Arroz, grão-de-bico, fraldinha e pimentão assado.",
+      "preco": 35,
+      "etiqueta": "Mais pedida",
+      "foto": "assets/fotos/fraldinha-suculenta.jpg",
+      "fotoAlt": "Marmita de fraldinha desfiada com pimentões e grão-de-bico"
+    },
+    {
+      "id": "escondidinho-abobora",
+      "status": "disponivel",
+      "nome": "Escondidinho de abóbora",
+      "descricao": "Purê de abóbora assada, carne moída refogada e muito queijo parmesão por cima.",
+      "preco": 25,
+      "etiqueta": "Low carb",
+      "foto": "assets/fotos/escondidinho-abobora.jpg",
+      "fotoAlt": "Escondidinho de abóbora com carne moída e parmesão"
+    },
+    {
+      "id": "opcao-vegana",
+      "status": "em-breve",
+      "nome": "Opção vegana",
+      "descricao": "A gente ainda está acertando o prato. Assim que ficar bom demais, ele entra aqui.",
+      "preco": null,
+      "etiqueta": "Opção vegana em breve",
+      "foto": null,
+      "fotoAlt": null
+    }
+  ]
+}
