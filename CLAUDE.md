@@ -48,6 +48,7 @@ Para qualquer outra coisa (preços dos kits, doces, textos de outras seções, l
 | `preco` | **número**, preço por marmita: `35` ou `32.5`. Sem `"R$"`, sem aspas, ponto como decimal. Use `null` se o Lucas não informou — **nunca invente preço**. |
 | `etiqueta` | selo no canto da foto: curto, 1 a 3 palavras ("Mais pedida", "Low carb", "Novidade"). Pode ser `null`. |
 | `foto` | `assets/fotos/nome-do-arquivo.jpg`, ou `null` (aparece um desenho com "Foto a caminho"). |
+| `fotoAmpliada` | opcional. Foto completa que abre quando o cliente clica na foto do card: `assets/fotos/nome-do-arquivo-ampliada.jpg`. Se omitido, abre a própria `foto`. |
 | `fotoAlt` | descrição curta do que aparece na foto (acessibilidade). |
 | `porcao` | opcional. Se omitido, aparece "400g · marmita individual". Só use se o Lucas pedir outro tamanho. |
 
@@ -60,7 +61,9 @@ O site lê o nome e o preço do `cardapio.json` também pro carrinho e pra mensa
 1. Salve em `assets/fotos/` com nome em minúsculas, sem acento nem espaço: `frango-ao-curry.jpg`.
 2. Formato JPG, **até 1200 px no lado maior**, idealmente abaixo de 400 KB. No Mac: `sips -Z 1200 assets/fotos/frango-ao-curry.jpg`. Se não tiver como redimensionar, avise o Lucas.
 3. A foto aparece cortada em proporção 4:3 — prefira fotos horizontais com o prato centralizado.
-4. Não apague fotos antigas: um prato pode voltar ao cardápio.
+4. Cada prato pode ter **duas fotos**: a do card (`foto`, fechada no prato) e a completa (`fotoAmpliada`, em pé ou deitada, até 1800 px no lado maior e idealmente abaixo de 560 KB). A skill `tratamento-fotos-doval`, formato `cardapio`, gera as duas.
+5. Foto trocada ganha **nome novo** (`-2`, `-3`...): com o mesmo nome, quem já visitou o site pode continuar vendo a antiga por até 7 dias.
+6. Não apague fotos antigas: um prato pode voltar ao cardápio.
 
 ## Passo a passo de uma troca
 
