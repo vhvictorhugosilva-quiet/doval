@@ -23,7 +23,7 @@ vercel.json       ← configuração da Vercel
 
 ## Como trocar o cardápio da semana (Lucas)
 
-Os pratos da semana ficam todos no arquivo `cardapio.json`. Não precisa (e não deve) mexer no `index.html`.
+Os pratos da semana ficam todos no arquivo `cardapio.json`. O resto do site (kits, doces, textos) fica no `index.html` e também pode ser alterado pelo Claude, seguindo os cuidados do `CLAUDE.md`.
 
 **Com o Claude (recomendado):** abra esta pasta no Claude e peça, por exemplo: *"troca o cardápio da semana: sai a fraldinha, entra frango ao curry a R$ 32, selo Novidade, foto em anexo"*. O Claude segue as regras do `CLAUDE.md`: atualiza a pasta, edita o `cardapio.json`, confere com `scripts/checar-cardapio.py`, te mostra o resumo e só publica depois do seu "pode".
 
