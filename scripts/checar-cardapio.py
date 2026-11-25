@@ -55,6 +55,15 @@ for i, p in enumerate(pratos, 1):
             avisos.append(f'{tag}: a foto tem {os.path.getsize(caminho)//1000} KB. Reduza pra até 1200px de largura (ideal < 400 KB).')
         if not p.get("fotoAlt"):
             avisos.append(f'{tag}: falta "fotoAlt" (descrição da foto pra acessibilidade).')
+        ampliada = p.get("fotoAmpliada")
+        if ampliada:
+            if not re.fullmatch(r"assets/fotos/[a-z0-9-]+\.(jpg|jpeg|png|webp)", ampliada):
+                erros.append(f'{tag}: "fotoAmpliada" precisa ser assets/fotos/nome-sem-acento.jpg (minúsculas, sem espaço).')
+            cam = os.path.join(RAIZ, ampliada)
+            if not os.path.isfile(cam):
+                erros.append(f'{tag}: a foto ampliada {ampliada} não existe na pasta.')
+            elif os.path.getsize(cam) > 700_000:
+                avisos.append(f'{tag}: a foto ampliada tem {os.path.getsize(cam)//1000} KB. Reduza pra até 1800px no lado maior (ideal < 560 KB).')
     elif status == "disponivel":
         avisos.append(f'{tag}: sem foto — vai aparecer o desenho com "Foto a caminho".')
 

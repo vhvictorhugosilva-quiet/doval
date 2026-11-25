@@ -15,15 +15,15 @@
 <meta property="og:description" content="Marmitas e doces feitos com afeto. Monte seu pedido e envie pelo WhatsApp.">
 <meta property="og:image" content="assets/og-image.jpg">
 <script src="./support.js"></script>
-<meta name="ext-resource-dependency" content="assets/fotos/frango-desfiado-brocolis.jpg" data-resource-id="foto-frango" />
-<meta name="ext-resource-dependency" content="assets/fotos/carne-moida-repolho.jpg" data-resource-id="foto-carne" />
+<meta name="ext-resource-dependency" content="assets/fotos/frango-desfiado-brocolis-2.jpg" data-resource-id="foto-frango" />
+<meta name="ext-resource-dependency" content="assets/fotos/carne-moida-repolho-2.jpg" data-resource-id="foto-carne" />
 <meta name="ext-resource-dependency" content="assets/fotos/fraldinha-suculenta.jpg" data-resource-id="foto-fraldinha" />
 <meta name="ext-resource-dependency" content="assets/fotos/lasanha-berinjela.jpg" data-resource-id="foto-lasanha" />
 <meta name="ext-resource-dependency" content="assets/fotos/escondidinho-abobora.jpg" data-resource-id="foto-escondidinho" />
 <meta name="ext-resource-dependency" content="assets/fotos/frango-low-carb.jpg" data-resource-id="foto-lowcarb" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-nozes.jpg?v=2" data-resource-id="foto-nozes" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-ninho-uva.jpg" data-resource-id="foto-ninho" />
-<meta name="ext-resource-dependency" content="assets/fotos/banana-bread.jpg" data-resource-id="foto-banana" />
+<meta name="ext-resource-dependency" content="assets/fotos/banana-bread-2.jpg" data-resource-id="foto-banana" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-cenoura.jpg" data-resource-id="foto-cenoura" />
 <meta name="ext-resource-dependency" content="assets/fotos/cenoura-brigadeiro.jpg" data-resource-id="foto-cenoura-brig" />
 <meta name="ext-resource-dependency" content="assets/fotos/bolo-chocolate.jpg" data-resource-id="foto-chocolate" />
@@ -80,18 +80,21 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
 @supports (height:100dvh){:root{--foto-vh:100dvh}}
 .foto-abrir{position:absolute;inset:0;z-index:1;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px;border:0;background:none;color:var(--ink);cursor:zoom-in;-webkit-tap-highlight-color:transparent}
 .foto-selo{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--radius-pill);background:var(--neutral-0);border:2px solid var(--ink);color:var(--ink);font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase;pointer-events:none;transition:background-color var(--dur-fast) var(--ease-out)}
+.foto-lupa{padding:7px}
 .foto-abrir:hover .foto-selo,.foto-abrir:focus-visible .foto-selo{background:var(--doval-yellow)}
 .foto-abrir:focus-visible,.foto-zoom:focus-visible{outline:3px solid var(--doval-blue);outline-offset:-6px;box-shadow:none;border-radius:var(--radius-lg)}
 .foto-overlay.dv-overlay{background:rgba(33,33,33,.6);padding:12px;z-index:60;overscroll-behavior:contain}
-.foto-painel{--foto-w:min(860px,100vw - 30px,(var(--foto-vh) - var(--foto-texto)) * var(--foto-r));--foto-texto:190px;position:relative;display:flex;flex-direction:column;width:calc(var(--foto-w) + 6px);max-height:calc(var(--foto-vh) - 24px);overflow:hidden;background:var(--neutral-0);border:var(--border-width-thick) solid var(--ink);border-radius:var(--radius-xl);box-shadow:var(--shadow-sticker);animation:dv-pop var(--dur-slow) var(--ease-bounce)}
-.foto-moldura{position:relative;flex:none;border-bottom:2px solid var(--ink)}
-.foto-janela{height:calc(var(--foto-w) / var(--foto-r));overflow:hidden;background:var(--neutral-100);scrollbar-width:none;overscroll-behavior:contain;transition:height var(--dur-base) var(--ease-out)}
+.foto-painel{--foto-w:min(860px,100vw - 30px,(var(--foto-vh) - var(--foto-texto)) * var(--foto-r));--foto-texto:190px;--foto-jw:var(--foto-w);position:relative;display:flex;flex-direction:column;width:calc(var(--foto-jw) + 6px);max-height:calc(var(--foto-vh) - 24px);overflow:hidden;background:var(--neutral-0);border:var(--border-width-thick) solid var(--ink);border-radius:var(--radius-xl);box-shadow:var(--shadow-sticker);animation:dv-pop var(--dur-slow) var(--ease-bounce)}
+.foto-painel[data-zoom="sim"]{--foto-jw:min(var(--foto-w) * 2,100vw - 30px,860px)}
+.foto-moldura{position:relative;overflow:hidden;flex:none;border-bottom:2px solid var(--ink)}
+.foto-janela{height:calc(var(--foto-w) / var(--foto-r));overflow:hidden;background:var(--neutral-100);scrollbar-width:none;overscroll-behavior:contain}
 .foto-janela::-webkit-scrollbar{display:none}
 .foto-zoom{display:block;width:var(--foto-w);padding:0;border:0;background:none;cursor:zoom-in;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.foto-zoom img{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.foto-zoom img{display:block;width:100%;height:auto;aspect-ratio:auto var(--foto-r);user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
 [data-zoom="sim"] .foto-janela{height:min(var(--foto-w) * 2 / var(--foto-r),var(--foto-vh) - var(--foto-texto));overflow:auto}
 [data-zoom="sim"] .foto-zoom{width:calc(var(--foto-w) * 2);cursor:grab;touch-action:pan-x pan-y pinch-zoom}
 [data-zoom="sim"] .foto-zoom:active{cursor:grabbing}
+.foto-previa{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(8px);transform:scale(1.06);pointer-events:none}
 .foto-dica{position:absolute;right:12px;bottom:12px}
 .foto-fechar{position:absolute;top:10px;right:10px;z-index:2;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:50%;background:var(--neutral-0);color:var(--ink);font-family:var(--font-display);font-weight:800;font-size:18px;line-height:1;cursor:pointer;transition:transform var(--dur-fast) var(--ease-out)}
 .foto-fechar:active{transform:scale(.9)}
@@ -99,7 +102,7 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
 .foto-painel:focus{outline:none}
 .foto-legenda{flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 18px 18px}
 @media (max-height:500px){.foto-painel{--foto-texto:90px}.foto-legenda{padding:8px 18px 10px}.foto-legenda p{display:none}}
-@media (prefers-reduced-motion:reduce){.foto-overlay,.foto-painel{animation:none!important}.foto-janela{transition:none}}
+@media (prefers-reduced-motion:reduce){.foto-overlay,.foto-painel{animation:none!important}}
 @keyframes dv-drift{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-7px) rotate(4deg)}}
 </style>
 </helmet>
@@ -255,10 +258,10 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
         <div style="background:var(--neutral-0);border:2px solid var(--ink);border-radius:var(--radius-lg);box-shadow:var(--shadow-sticker);overflow:hidden;display:flex;flex-direction:column;transition:transform var(--dur-base) var(--ease-bounce),box-shadow var(--dur-base) var(--ease-out)" style-hover="transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)">
           <div style="position:relative;aspect-ratio:4/3;background:var(--neutral-100);border-bottom:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
             <sc-if value="{{ item.ehFrango }}" hint-placeholder-val="{{ false }}">
-              <img src="assets/fotos/frango-desfiado-brocolis.jpg" alt="Marmita de frango desfiado com brócolis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+              <img src="assets/fotos/frango-desfiado-brocolis-2.jpg" alt="Marmita de frango desfiado com arroz, feijão, brócolis e couve-flor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
             </sc-if>
             <sc-if value="{{ item.ehCarne }}" hint-placeholder-val="{{ false }}">
-              <img src="assets/fotos/carne-moida-repolho.jpg" alt="Marmita de carne moída com repolho assado" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+              <img src="assets/fotos/carne-moida-repolho-2.jpg" alt="Marmita de carne moída com arroz, feijão-preto e repolho assado" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
             </sc-if>
             <sc-if value="{{ item.ehLowCarb }}" hint-placeholder-val="{{ false }}">
               <img src="assets/fotos/frango-low-carb.jpg" alt="Marmita de frango ao curry grelhado" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
@@ -274,7 +277,7 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
             </sc-if>
             <span style="position:absolute;top:10px;left:10px;padding:5px 12px;border-radius:var(--radius-pill);background:var(--neutral-0);border:2px solid var(--ink);font:var(--type-label);letter-spacing:var(--tracking-caps);text-transform:uppercase">{{ item.tag }}</span>
             <sc-if value="{{ item.temFoto }}" hint-placeholder-val="{{ false }}">
-              <button type="button" class="foto-abrir" onClick="{{ item.abrirFoto }}" aria-haspopup="dialog" aria-label="{{ item.fotoLabel }}"><span class="foto-selo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg>Ampliar</span></button>
+              <button type="button" class="foto-abrir" onClick="{{ item.abrirFoto }}" aria-haspopup="dialog" aria-label="{{ item.fotoLabel }}"><span class="foto-selo foto-lupa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg></span></button>
             </sc-if>
           </div>
           <div style="padding:16px 18px 18px;flex:1;display:flex;flex-direction:column">
@@ -356,7 +359,7 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
         <div style="position:relative;aspect-ratio:4/3;background:var(--yellow-100);border-bottom:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
           <sc-if value="{{ item.temFoto }}" hint-placeholder-val="{{ true }}">
             <img src="{{ item.fotoSrc }}" alt="{{ item.fotoAlt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-            <button type="button" class="foto-abrir" onClick="{{ item.abrirFoto }}" aria-haspopup="dialog" aria-label="{{ item.fotoLabel }}"><span class="foto-selo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg>Ampliar</span></button>
+            <button type="button" class="foto-abrir" onClick="{{ item.abrirFoto }}" aria-haspopup="dialog" aria-label="{{ item.fotoLabel }}"><span class="foto-selo foto-lupa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg></span></button>
           </sc-if>
           <sc-if value="{{ item.semFoto }}" hint-placeholder-val="{{ false }}">
             <x-import component-from-global-scope="DovalDesignSystem_84fe4e.Doodle" name="star-green" src="{{ item.doodleSrc }}" size="54px" rotate="-6" base="assets/illustrations" hint-size="54px,54px"></x-import>
@@ -581,6 +584,9 @@ main a[href^="#"]:hover,main a[href^="http"]:hover{text-decoration:none}
         <div class="foto-janela" ref="{{ fotoJanelaRef }}">
           <button type="button" class="foto-zoom" onClick="{{ alternarZoom }}" aria-label="{{ fotoZoomLabel }}"><img src="{{ fotoSrc }}" alt="{{ fotoAlt }}" draggable="false"></button>
         </div>
+        <sc-if value="{{ fotoCarregando }}" hint-placeholder-val="{{ false }}">
+          <img class="foto-previa" src="{{ fotoCapa }}" alt="">
+        </sc-if>
         <sc-if value="{{ fotoSemZoom }}" hint-placeholder-val="{{ true }}">
           <span class="foto-selo foto-dica" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg>Dar zoom</span>
         </sc-if>
@@ -716,7 +722,7 @@ class Component extends DCLogic {
   }
 
   /* ── foto ampliada das marmitas ── */
-  abrirFoto(e, nome, desc) {
+  abrirFoto(e, nome, desc, ampliada) {
     const botao = e.currentTarget;
     const img = botao.parentElement.querySelector('img');
     if (!img) return;
@@ -727,8 +733,20 @@ class Component extends DCLogic {
     /* entra no histórico pra o botão voltar do celular fechar a foto em vez de sair do site */
     this._fotoHist = false;
     try { window.history.pushState({ dovalFoto: true }, ''); this._fotoHist = true; } catch (err) {}
-    const r = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1.5;
-    this.setState({ foto: { src: img.currentSrc || img.src, alt: img.alt, nome: nome, desc: desc || '', ratio: r }, fotoZoom: false });
+    const prop = el => el.naturalWidth && el.naturalHeight ? el.naturalWidth / el.naturalHeight : 1.5;
+    const capa = img.currentSrc || img.src;
+    const foto = { src: capa, capa: capa, alt: img.alt, nome: nome, desc: desc || '', ratio: prop(img), pronta: true };
+    if (!ampliada) { this.setState({ foto: foto, fotoZoom: false }); return; }
+    /* prato com segunda foto: mostra a do card borrada até a completa chegar; se falhar, fica a do card */
+    const grande = new Image();
+    const cheia = () => Object.assign({}, foto, { src: grande.src, ratio: prop(grande) });
+    grande.src = ampliada;
+    if (grande.complete && grande.naturalWidth) { this.setState({ foto: cheia(), fotoZoom: false }); return; }
+    const espera = Object.assign({}, foto, { src: grande.src, ratio: 0.75, pronta: false });
+    const trocar = nova => this.setState(s => s.foto === espera ? { foto: nova } : null);
+    grande.onload = () => trocar(cheia());
+    grande.onerror = () => trocar(foto);
+    this.setState({ foto: espera, fotoZoom: false });
   }
 
   fecharFoto() {
@@ -757,7 +775,7 @@ class Component extends DCLogic {
     if (this._arrastou) { this._arrastou = false; return; }
     const j = this._fotoJanela;
     const img = j && j.querySelector('img');
-    if (!img) return;
+    if (!img || !this.state.foto || !this.state.foto.pronta) return;
     const antes = img.getBoundingClientRect();
     const cx = j.getBoundingClientRect();
     /* teclado não tem ponto de toque: usa o centro */
@@ -767,8 +785,9 @@ class Component extends DCLogic {
     const fy = (y - antes.top) / antes.height;
     const ampliar = !this.state.fotoZoom;
     this.setState({ fotoZoom: ampliar }, () => {
-      j.scrollLeft = ampliar ? fx * img.offsetWidth - (x - cx.left) : 0;
-      j.scrollTop = ampliar ? fy * img.offsetHeight - (y - cx.top) : 0;
+      /* a janela cresce junto: centraliza o ponto tocado */
+      j.scrollLeft = ampliar ? fx * img.offsetWidth - j.clientWidth / 2 : 0;
+      j.scrollTop = ampliar ? fy * img.offsetHeight - j.clientHeight / 2 : 0;
       const calmo = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
       if (img.animate && !calmo) {
         img.style.transformOrigin = fx * 100 + '% ' + fy * 100 + '%';
@@ -877,7 +896,7 @@ class Component extends DCLogic {
     const dood = n => R('d-' + n, 'assets/illustrations/' + n + '.png');
 
     const view = this.state.view || this.props.startView || 'inicio';
-    const foto = this.state.foto || { src: '', alt: '', nome: '', desc: '', ratio: 1.5 };
+    const foto = this.state.foto || { src: '', capa: '', alt: '', nome: '', desc: '', ratio: 1.5, pronta: true };
     const topo = () => { if (typeof window !== 'undefined') window.scrollTo(0, 0); };
     const whatsapp = this.props.whatsapp ?? '(11) 98293-9101';
 
@@ -926,7 +945,7 @@ class Component extends DCLogic {
         fotoSrc: p.foto || '',
         fotoAlt: p.fotoAlt || p.nome,
         fotoLabel: 'Ampliar foto: ' + p.nome,
-        abrirFoto: e => this.abrirFoto(e, p.nome, p.descricao),
+        abrirFoto: e => this.abrirFoto(e, p.nome, p.descricao, p.fotoAmpliada),
         doodleSrc: dood(emBreve ? 'leaf-red' : 'star-green'),
         qtyLabel: (atual ? atual.qty : 0) + '×',
         inc: () => this.bump(id, 1, meta),
@@ -1004,6 +1023,8 @@ class Component extends DCLogic {
       pularIntro: () => this.fecharIntro(),
       fotoAberta: !!this.state.foto,
       fotoSrc: foto.src,
+      fotoCapa: foto.capa,
+      fotoCarregando: !!this.state.foto && !foto.pronta,
       fotoAlt: foto.alt,
       fotoNome: foto.nome,
       fotoDesc: foto.desc,
@@ -1061,11 +1082,11 @@ class Component extends DCLogic {
       semanaPratos: semanaPratos,
       semanaErro: this.state.semanaErro,
       kitsFoto: [
-        { nome: 'Frango', desc: 'Arroz, feijão, frango desfiado cozido no caldo de legumes e brócolis branqueado.', tag: 'dia a dia', ehFrango: true, semFoto: false, doodle: 'star-green' },
-        { nome: 'Carne moída', desc: 'Arroz, feijão-preto, carne moída refogadinha e repolho assado com mostarda e mel.', tag: 'Clássica', ehCarne: true, semFoto: false, doodle: 'star-blue' },
+        { nome: 'Frango', desc: 'Arroz, feijão, frango desfiado cozido no caldo de legumes e brócolis branqueado.', tag: 'dia a dia', ehFrango: true, semFoto: false, ampliada: 'assets/fotos/frango-desfiado-brocolis-2-ampliada.jpg', doodle: 'star-green' },
+        { nome: 'Carne moída', desc: 'Arroz, feijão-preto, carne moída refogadinha e repolho assado com mostarda e mel.', tag: 'Clássica', ehCarne: true, semFoto: false, ampliada: 'assets/fotos/carne-moida-repolho-2-ampliada.jpg', doodle: 'star-blue' },
         { nome: 'Lasanha de berinjela', desc: 'Suculenta, com molho de tomates assados.', tag: 'vegetariana', ehVeg: true, semFoto: false, doodle: 'flower-red' },
         { nome: 'Frango ao curry grelhado', desc: 'Frango grelhado, legumes, purê de abóbora cabotiá e quinoa.', tag: 'leve', ehLowCarb: true, semFoto: false, doodle: 'leaf-red' }
-      ].map(it => Object.assign({}, it, { doodleSrc: dood(it.doodle), temFoto: !it.semFoto, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc) }, this.stepper('kit-' + it.nome, {
+      ].map(it => Object.assign({}, it, { doodleSrc: dood(it.doodle), temFoto: !it.semFoto, fotoLabel: 'Ampliar foto: ' + it.nome, abrirFoto: e => this.abrirFoto(e, it.nome, it.desc, it.ampliada) }, this.stepper('kit-' + it.nome, {
         nome: 'Marmita ' + it.nome, detalhe: kitDetalhe, preco: brl(kitUnit) + ' / marmita', valor: kitUnit, grupo: 'kit', limite: Number(kitQty || 0)
       }))),
       favoritos: [
@@ -1099,7 +1120,7 @@ class Component extends DCLogic {
         { nome: 'Bolo de cenoura', desc: 'Clássico brasileiro de massa fofinha, com cobertura de brigadeiro.', foto: ['foto-cenoura-brig', 'cenoura-brigadeiro.jpg'], cobLabels: ['Sem cobertura', 'Cobertura de brigadeiro', 'Calda de chocolate'], cobPrecos: [0, 25, 10], cobDetalhe: ['sem cobertura', 'com cobertura de brigadeiro (+ R$ 25,00)', 'com calda de chocolate (+ R$ 10,00)'], alt: 'Bolo de cenoura', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'star-blue', aValidar: false, tag: 'Clássico' },
         { nome: 'Bolo de laranja', desc: 'Leve, cítrico, perfumado e muuuito fofinho.', cobLabels: ['Sem calda', 'Calda de laranja'], cobPrecos: [0, 10], cobDetalhe: ['sem calda', 'com calda de laranja (+ R$ 10,00)'], foto: ['foto-laranja', 'bolo-laranja.jpg'], alt: 'Bolo de laranja fofinho', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'flower-yellow', aValidar: false, tag: 'Cítrico' },
         { nome: 'Bolo de chocolate', desc: 'Sabor intenso de cacau.', cobLabels: ['Sem cobertura', 'Cobertura de brigadeiro', 'Calda de chocolate'], cobPrecos: [0, 25, 10], cobDetalhe: ['sem cobertura', 'com cobertura de brigadeiro (+ R$ 25,00)', 'com calda de chocolate (+ R$ 10,00)'], foto: ['foto-chocolate', 'bolo-chocolate.jpg'], alt: 'Bolo de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'sparkle-green', aValidar: false, tag: 'Pro chocólatra' },
-        { nome: 'Banana bread', desc: 'Bolo amanteigado macio e aromático, com gotas de chocolate em cada fatia.', cobLabels: [''], cobDetalhe: [''], foto: ['foto-banana', 'banana-bread.jpg'], alt: 'Banana bread com gotas de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'crown-red', aValidar: false, tag: 'Favorito doval' }
+        { nome: 'Banana bread', desc: 'Bolo amanteigado macio e aromático, com gotas de chocolate em cada fatia.', cobLabels: [''], cobDetalhe: [''], foto: ['foto-banana', 'banana-bread-2.jpg'], alt: 'Banana bread com gotas de chocolate', preco: 'R$ 60,00 / unidade', valor: 60, doodle: 'crown-red', aValidar: false, tag: 'Favorito doval' }
       ].map((it, i) => {
         const key = 'sim-' + i;
         const base = Object.assign({}, it, { doodleSrc: dood(it.doodle), tag: it.tag || 'Por unidade', temInfo: !!it.info });
